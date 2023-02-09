@@ -8,7 +8,7 @@ from database import db
 app = Flask(__name__)
 
 
-
+#tag
 @app.route('/')
 def home():
     return render_template('index.html')
