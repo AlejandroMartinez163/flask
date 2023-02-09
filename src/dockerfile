@@ -9,7 +9,7 @@ COPY . .
 
 EXPOSE 80
 
-WORKDIR /app
+WORKDIR /src/app
 
 COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
