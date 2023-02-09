@@ -9,5 +9,5 @@ COPY . .
 
 EXPOSE 80
 
-WORKDIR /src/app
+WORKDIR /src
 
