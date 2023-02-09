@@ -1,12 +1,20 @@
-from python:3.9.16-alpine3.16
+FROM python:3.9.16-alpine3.16
 
-workdir /app
+WORKDIR /app
 
-copy requirements.txt requirements.txt
-run pip3 install -r requirements.txt
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
+RUN pip3 install gunicorn
 
-copy . .
+COPY . .
 
-expose 5000
+EXPOSE 80
 
-cmd [ "python3", "./app.py"]
+WORKDIR /app/appFlask/src
+
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
+#ENTRYPOINT [ "python3", "/app/appFlask/src/app.py"]
+CMD ["./entrypoint.sh"]
+# cmd arrancar gunicorn
+#CMD ["gunicorn"," --bind=0.0.0.0:80 app:app"]
